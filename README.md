@@ -6,7 +6,7 @@
 
 ## 📱 UI Flow
 
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/569202d6-4d6e-4c1a-90f2-f841fc283f3d" />
+<img width="500" alt="image" src="assets/images/UiFlow.png" />
 
 ## 🧩 Details UI:
 
@@ -20,7 +20,7 @@
 
 | SplashScreenUI | HomeUI | AboutUI | BmiUI | BmrUI |
 |---|---|---|---|---|
-| <img width="150" alt="SplashScreenUI" src="https://github.com/user-attachments/assets/991eb1d3-24e0-4fc5-b845-4eaf44aef124" /> | <img width="150" alt="HomeUI" src="https://github.com/user-attachments/assets/b43162f1-d200-480c-a11b-aadc89f881cf" /> | <img width="150" alt="AboutUI" src="https://github.com/user-attachments/assets/837a4272-e39e-4c05-a07b-23ebf2ef7a44" /> | <img width="150" alt="BmiUI" src="https://github.com/user-attachments/assets/fe7b11c5-5db0-4ea4-a21b-8d155a12f4ae" /> | <img width="150" alt="BmrUI" src="https://github.com/user-attachments/assets/ff457457-d582-4a32-8a2a-853cef21833d" /> |
+| <img width="150" alt="SplashScreenUI" src="assets/images/SplashScreenUI.png" /> | <img width="150" alt="HomeUI" src="assets/images/HomeUI.png" /> | <img width="150" alt="AboutUI" src="assets/images/AboutUI.png" /> | <img width="150" alt="BmiUI" src="assets/images/BmiUI.png" /> | <img width="150" alt="BmrUI" src="assets/images/BmrUI.png" /> |
 
 
 ## 🛠️ Technologies
