@@ -6,7 +6,7 @@
 
 ## 📱 UI Flow
 
-<img width="500" alt="image" src="assets/images/UiFlow.png" />
+<img width="700" alt="image" src="assets/images/UiFlow.png" />
 
 ## 🧩 Details UI:
 
