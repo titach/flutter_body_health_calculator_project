@@ -18,7 +18,7 @@
 
 ## 🎨 Pages / UI ที่พัฒนา
 
-| SplashScreenUI | HomeUI | AboutUI | BmiUI | BmrUI |
+| SplashScreenUI |      HomeUI      |      AboutUI      |       BmiUI       |       BmrUI       |
 |---|---|---|---|---|
 | <img width="150" alt="SplashScreenUI" src="assets/images/SplashScreenUI.png" /> | <img width="150" alt="HomeUI" src="assets/images/HomeUI.png" /> | <img width="150" alt="AboutUI" src="assets/images/AboutUI.png" /> | <img width="150" alt="BmiUI" src="assets/images/BmiUI.png" /> | <img width="150" alt="BmrUI" src="assets/images/BmrUI.png" /> |
 
