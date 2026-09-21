@@ -8,7 +8,7 @@
 
 <img width="700" alt="image" src="assets/images/UiFlow.png" />
 
-## 🧩 Details UI:
+## 🧩 Details UI
 
 - SplashScreenUI — หน้าจอเริ่มต้นของแอป แสดงเป็นเวลา 3 วินาที จากนั้นจะไปยัง HomeUI
 - HomeUI — หน้าหลักของแอป มี BottomNavigationBar สำหรับนำทางไปยังหน้า About, BMI และ BMR
@@ -16,9 +16,9 @@
 - BmiUI — หน้าสำหรับคำนวณดัชนีมวลกาย (BMI)
 - BmrUI — หน้าสำหรับคำนวณอัตราการเผาผลาญพลังงานพื้นฐาน (BMR)
 
-## 🎨 Pages / UI ที่พัฒนา
+## 🎨 Pages / UI
 
-| -SplashScreenUI- | ------HomeUI------ | ------AboutUI------ | ------BmiUI------ | ------BmrUI------ |
+| SplashScreenUI | HomeUI | AboutUI | BmiUI | BmrUI |
 |---|---|---|---|---|
 | <img width="150" alt="SplashScreenUI" src="assets/images/SplashScreenUI.png" /> | <img width="150" alt="HomeUI" src="assets/images/HomeUI.png" /> | <img width="150" alt="AboutUI" src="assets/images/AboutUI.png" /> | <img width="150" alt="BmiUI" src="assets/images/BmiUI.png" /> | <img width="150" alt="BmrUI" src="assets/images/BmrUI.png" /> |
 
@@ -53,7 +53,6 @@ lib/
 - ฝึกออกแบบ UI Flow และโครงสร้างการใช้งานของแอป
 - พัฒนา UI สำหรับการคำนวณ BMI และ BMR
 - ฝึกจัดโครงสร้างและแยกไฟล์ UI ของแต่ละหน้าภายในโปรเจค
-- ฝึกการทำงานร่วมกันและแบ่งส่วนงานภายในโปรเจค
 
 ## 👩‍💻 My Contribution
 
