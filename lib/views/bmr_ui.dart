@@ -9,7 +9,7 @@ class BmrUI extends StatefulWidget {
 
 class _BmrUIState extends State<BmrUI> {
   //สร้างตัวแปรเก็บ index ของรายการที่เลือก
-  int _currentIndexMale = 0;
+  int _currentIndexMale = 1;
   int _currentIndexFemale = 0;
 
   // สร้างตัวแปรแบบ list
@@ -19,6 +19,14 @@ class _BmrUIState extends State<BmrUI> {
     Colors.grey,
     Color(0xfffacfe2),
   ];
+
+  // สร้างตัวควบคุม TextField
+  TextEditingController weightCtrl = TextEditingController();
+  TextEditingController heightCtrl = TextEditingController();
+  TextEditingController ageCtrl = TextEditingController();
+
+  // สร้างตัวแปรแสดงค่า BMR กับการแปรผล
+  String showBMR = '0.00';
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +157,7 @@ class _BmrUIState extends State<BmrUI> {
                   height: 10,
                 ),
                 TextField(
+                  controller: weightCtrl,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -180,6 +189,7 @@ class _BmrUIState extends State<BmrUI> {
                   height: 10,
                 ),
                 TextField(
+                  controller: heightCtrl,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -211,6 +221,7 @@ class _BmrUIState extends State<BmrUI> {
                   height: 10,
                 ),
                 TextField(
+                  controller: ageCtrl,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -230,7 +241,34 @@ class _BmrUIState extends State<BmrUI> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Validate input ก่อนแล้วค่อยคำนวณและแสดงผล
+                    if (weightCtrl.text.isEmpty == true || heightCtrl.text.isEmpty == true || ageCtrl.text.isEmpty == true) {
+                      // แสดงข้อความเตือนด้วย SnackBar
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('กรุณากรอกข้อมูลให้ครบถ้วน !!!'),
+                          backgroundColor: Color(0xfffa2883),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+
+                      return;
+                    }
+                    // คำนวณและแสดงผล แต่อย่าลืมแปลงที่ป้อนใน TextField ให้เป็นตัวเลขก่อน
+                    double weight = double.parse(weightCtrl.text);
+                    double height = double.parse(heightCtrl.text);
+                    int age = int.parse(ageCtrl.text);
+                    double bmr;
+                    if (_currentIndexMale == 1) {
+                      bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+                    } else {
+                      bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+                    }
+                    setState(() {
+                      showBMR = bmr.toStringAsFixed(2);
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(
                       MediaQuery.of(context).size.width * 0.4,
@@ -250,7 +288,17 @@ class _BmrUIState extends State<BmrUI> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // เคลียร์ข้อมูลบนหน้าจอ
+                    setState(() {
+                      weightCtrl.text = '';
+                      heightCtrl.text = '';
+                      ageCtrl.text = '';
+                      showBMR = '0.00';
+                      _currentIndexMale = 1;
+                      _currentIndexFemale = 0;
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(
                       MediaQuery.of(context).size.width * 0.4,
@@ -296,7 +344,7 @@ class _BmrUIState extends State<BmrUI> {
                         height: 10,
                       ),
                       Text(
-                        '0.00',
+                        showBMR,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.height * 0.05,
                           fontWeight: FontWeight.bold,

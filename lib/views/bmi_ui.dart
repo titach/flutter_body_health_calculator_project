@@ -8,6 +8,14 @@ class BmiUI extends StatefulWidget {
 }
 
 class _BmiUIState extends State<BmiUI> {
+  // สร้างตัวควบคุม TextField
+  TextEditingController weightCtrl = TextEditingController();
+  TextEditingController heightCtrl = TextEditingController();
+
+  // สร้างตัวแปรแสดงค่า BMI กับการแปรผล
+  String showBMI = '0.00';
+  String showResult = 'การแปรผล';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +65,7 @@ class _BmiUIState extends State<BmiUI> {
                   height: 10,
                 ),
                 TextField(
+                  controller: weightCtrl,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -88,6 +97,7 @@ class _BmiUIState extends State<BmiUI> {
                   height: 10,
                 ),
                 TextField(
+                  controller: heightCtrl,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -107,7 +117,57 @@ class _BmiUIState extends State<BmiUI> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Validate input ก่อนแล้วค่อยคำนวณและแสดงผล
+                    if (weightCtrl.text.isEmpty == true) {
+                      // แสดงข้อความเตือนด้วย SnackBar
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('กรุณากรอกน้ำหนักของคุณด้วย !!!'),
+                          backgroundColor: Color(0xfffa2883),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+
+                      return;
+                    }
+                    // ตรวจสอบส่วนสูง
+                    if (heightCtrl.text.isEmpty == true) {
+                      // แสดงข้อความเตือนด้วย SnackBar
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('กรุณากรอกส่วนสูงของคุณด้วย !!!'),
+                          backgroundColor: Color(0xfffa2883),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+
+                      return;
+                    }
+                    // คำนวณ BMI และแสดงผลพร้อมแปรผล
+                    // แปลงน้ำหนักและส่วนสูงเป็นตัวเลขก่อน
+                    double weight = double.parse(weightCtrl.text);
+                    double height = double.parse(heightCtrl.text) / 100;
+                    double bmi = weight / (height * height);
+                    //นำค่า BMI ที่คำนวณได้ไปแสดงพร้อมกับการแปรผล
+                    // *** จำไว้ว่าโค้ดคำสั่งการทำงานที่มีผลต่อการแสดงผลต้องเขียนอยู่ภายใต้คำสั่ง setState() ***
+                    setState(() {
+                      // เอาค่า MBI ที่คำนวณได้ไปกำหนดให้กับตัวแปร showBMI แต่ต้องเป็น string และกำหนดทศนิยมก่อน
+                      showBMI = bmi.toStringAsFixed(2);
+                      // แปรผล BMI
+                      if (bmi < 18.5) {
+                        showResult = 'น้ำหนักต่ำกว่าเกณฑ์';
+                      } else if (bmi < 22.9) {
+                        showResult = 'น้ำหนักสมส่วน';
+                      } else if (bmi < 24.9) {
+                        showResult = 'น้ำหนักเกิน';
+                      } else if (bmi < 29.9) {
+                        showResult = 'โรคอ้วนระดับ 1';
+                      } else {
+                        showResult = 'โรคอ้วนระดับ 2';
+                      }
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(
                       MediaQuery.of(context).size.width * 0.4,
@@ -127,7 +187,15 @@ class _BmiUIState extends State<BmiUI> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // เคลียร์ข้อมูล ให้หน้าจอเหมือนกับตอนที่เปิดเข้ามาใหม่
+                    setState(() {
+                      weightCtrl.text = '';
+                      heightCtrl.text = '';
+                      showBMI = '0.00';
+                      showResult = 'การแปรผล';
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(
                       MediaQuery.of(context).size.width * 0.4,
@@ -173,7 +241,7 @@ class _BmiUIState extends State<BmiUI> {
                         height: 10,
                       ),
                       Text(
-                        '0.00',
+                        showBMI,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.height * 0.05,
                           fontWeight: FontWeight.bold,
@@ -184,7 +252,7 @@ class _BmiUIState extends State<BmiUI> {
                         height: 10,
                       ),
                       Text(
-                        'การแปรผล',
+                        showResult,
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.height * 0.018,
                           fontWeight: FontWeight.bold,
